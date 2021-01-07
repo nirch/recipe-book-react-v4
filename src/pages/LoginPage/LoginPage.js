@@ -3,11 +3,12 @@ import { Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import './LoginPage.css'
 
-function LoginPage() {
+function LoginPage(props) {
     const [email, setEmail] = useState("");
     const [pwd, setPwd] = useState("");
-
-
+    const {users} = props;
+    
+    console.log(users);
 
     return (
         <div className="p-login">
