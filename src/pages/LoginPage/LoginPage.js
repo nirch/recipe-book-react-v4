@@ -4,7 +4,7 @@ import { Link, Redirect } from "react-router-dom";
 import './LoginPage.css'
 
 function LoginPage(props) {
-    const [email, setEmail] = useState("nir@nir.com");
+    const [email, setEmail] = useState("john@john.com");
     const [pwd, setPwd] = useState("123");
     const [showLoginError, setShowLoginError] = useState(false);
     const [redirectToRecipes, setRedirectToRecipes] = useState(false);
