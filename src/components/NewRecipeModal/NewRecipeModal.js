@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Modal, Form, Col, Row } from "react-bootstrap";
+import { Button, Modal, Form, Col, Row, Image } from "react-bootstrap";
 
 
 function NewRecipeModal(props) {
@@ -57,6 +57,7 @@ function NewRecipeModal(props) {
                         </Col>
                     </Form.Group>
                 </Form>
+                <Image src={imgURL}/>
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={closeModal}>
