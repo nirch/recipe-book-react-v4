@@ -3,13 +3,28 @@ import { Button, Modal, Form, Col, Row } from "react-bootstrap";
 
 
 function NewRecipeModal(props) {
-    const { show, handleClose } = props;
+    const { show, handleClose, addRecipe } = props;
     const [name, setName] = useState("");
     const [desc, setDesc] = useState("");
     const [imgURL, setImgURL] = useState("");
 
+    function closeModal() {
+        setName("");
+        setDesc("");
+        setImgURL("");
+        handleClose();
+    }
+
+    function handleAddRecipe() {
+        // 1) triggers addRecipe at App that will then add this recipe to its recipes state
+        addRecipe(name, desc, imgURL);
+
+        // 2) cleanup (clean all field + close the modal)
+        closeModal();
+    }
+
     return (
-        <Modal show={show} onHide={handleClose} size="xl">
+        <Modal show={show} onHide={closeModal} size="xl">
             <Modal.Header closeButton>
                 <Modal.Title>New Recipe</Modal.Title>
             </Modal.Header>
@@ -44,10 +59,10 @@ function NewRecipeModal(props) {
                 </Form>
             </Modal.Body>
             <Modal.Footer>
-                <Button variant="secondary" onClick={handleClose}>
+                <Button variant="secondary" onClick={closeModal}>
                     Cancel
                 </Button>
-                <Button variant="primary" onClick={() => alert(name+desc+imgURL)}>
+                <Button variant="primary" onClick={handleAddRecipe}>
                     Create Recipe
                 </Button>
             </Modal.Footer>

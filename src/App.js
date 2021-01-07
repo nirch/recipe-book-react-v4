@@ -23,6 +23,11 @@ function App() {
     setActiveUser(loggedinUser);
   }
 
+  function addRecipe(name, desc, imgURL) {
+    //,,,
+    alert(name+desc+imgURL);
+  }
+
   const activeUserReciepes = activeUser ? recipes.filter(recipe => recipe.userId === activeUser.id) : [];
 
   return (
@@ -31,7 +36,8 @@ function App() {
         <Route exact path="/"><HomePage activeUser={activeUser} onLogout={handleLogout}/></Route>
         <Route exact path="/login"><LoginPage activeUser={activeUser} users={users} onLogin={handleLogin}/></Route>
         <Route exact path="/signup"><SignupPage activeUser={activeUser}/></Route>
-        <Route exact path="/recipes"><RecipesPage activeUser={activeUser} onLogout={handleLogout} recipes={activeUserReciepes}/></Route>
+        <Route exact path="/recipes"><RecipesPage activeUser={activeUser} onLogout={handleLogout} 
+          recipes={activeUserReciepes} addRecipe={addRecipe}/></Route>
       </Switch>
     </HashRouter>
   );

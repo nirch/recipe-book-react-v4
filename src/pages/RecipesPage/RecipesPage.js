@@ -7,7 +7,7 @@ import RecipeNavbr from "../../components/RecipeNavbar/RecipeNavbr";
 import './RecipesPage.css'
 
 function RecipesPage(props) {
-    const {activeUser, onLogout, recipes} = props;
+    const {activeUser, onLogout, recipes, addRecipe} = props;
     const [showModal, setShowModal] = useState(false);
 
     if (!activeUser) {
@@ -30,7 +30,7 @@ function RecipesPage(props) {
                     {recipesView}
                 </Row>
             </Container>
-            <NewRecipeModal show={showModal} handleClose={() => setShowModal(false)}/>
+            <NewRecipeModal show={showModal} handleClose={() => setShowModal(false)} addRecipe={addRecipe}/>
         </div>
     )
 
