@@ -9,7 +9,7 @@ import jsonUsers from './data/users.json';
 
 function App() {
   const [users, setUsers] = useState(jsonUsers);      // HACK ALERT: holding all users as state only because this is a JSON based application (no server side)
-  const [activeUser, setActiveUser] = useState(null);
+  const [activeUser, setActiveUser] = useState(jsonUsers[0]);   // During development it's conveient to be logged in by default
 
   function handleLogout() {
     setActiveUser(null);
