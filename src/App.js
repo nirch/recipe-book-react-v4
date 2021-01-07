@@ -23,9 +23,16 @@ function App() {
     setActiveUser(loggedinUser);
   }
 
-  function addRecipe(name, desc, imgURL) {
-    //,,,
-    alert(name+desc+imgURL);
+  function addRecipe(name, desc, img) {
+    const newRecipe = {
+      id: recipes[recipes.length - 1].id + 1,
+      name,
+      desc,
+      img,
+      userId: activeUser.id
+    }
+
+    setRecipes(recipes.concat(newRecipe));
   }
 
   const activeUserReciepes = activeUser ? recipes.filter(recipe => recipe.userId === activeUser.id) : [];
