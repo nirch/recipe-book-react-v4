@@ -1,3 +1,4 @@
+import { Container, Jumbotron } from "react-bootstrap";
 import RecipeNavbr from "../../components/RecipeNavbar/RecipeNavbr";
 
 function HomePage(props) {
@@ -6,7 +7,12 @@ function HomePage(props) {
     return (
         <div className="p-home">
             <RecipeNavbr activeUser={activeUser} onLogout={onLogout}/>
-            Home Page
+            <Jumbotron>
+                <Container>
+                    <h1>Recipe Book</h1>
+                    <p>Master your recipes</p>
+                </Container>
+            </Jumbotron>
         </div>
     )
 
