@@ -1,10 +1,11 @@
 import RecipeNavbr from "../../components/RecipeNavbar/RecipeNavbr";
 
-function HomePage() {
+function HomePage(props) {
+    const {activeUser} = props;
 
     return (
         <div className="p-home">
-            <RecipeNavbr/>
+            <RecipeNavbr activeUser={activeUser}/>
             Home Page
         </div>
     )
