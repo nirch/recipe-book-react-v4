@@ -15,12 +15,16 @@ function App() {
     setActiveUser(null);
   }
 
+  function handleLogin(loggedinUser) {
+    setActiveUser(loggedinUser);
+  }
+
 
   return (
     <HashRouter>
       <Switch>
         <Route exact path="/"><HomePage activeUser={activeUser} onLogout={handleLogout}/></Route>
-        <Route exact path="/login"><LoginPage activeUser={activeUser} users={users}/></Route>
+        <Route exact path="/login"><LoginPage activeUser={activeUser} users={users} onLogin={handleLogin}/></Route>
         <Route exact path="/signup"><SignupPage activeUser={activeUser}/></Route>
         <Route exact path="/recipes"><RecipesPage activeUser={activeUser} onLogout={handleLogout}/></Route>
       </Switch>

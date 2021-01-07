@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import './LoginPage.css'
 
 function LoginPage(props) {
     const [email, setEmail] = useState("");
     const [pwd, setPwd] = useState("");
     const [showLoginError, setShowLoginError] = useState(false);
+    const [redirectToRecipes, setRedirectToRecipes] = useState(false);
     const {users, onLogin} = props;
     
     function login() {
@@ -15,12 +16,18 @@ function LoginPage(props) {
         // email and pws exists in the users array)
         const userFound = users.find(user => user.email.toLowerCase() === email.toLowerCase() && user.pwd == pwd);
         if (userFound) {
-            // Trigger onLogin event prop
+            // Trigger onLogin event prop + update redirect state so we will redirect to recipes page
             onLogin(userFound);
+            setRedirectToRecipes(true);
         } else {
             // show an error alert
             setShowLoginError(true);
         }
+    }
+
+
+    if (redirectToRecipes) {
+        return <Redirect to="/recipes"/>;
     }
 
     return (
