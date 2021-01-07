@@ -1,11 +1,11 @@
 import RecipeNavbr from "../../components/RecipeNavbar/RecipeNavbr";
 
 function RecipesPage(props) {
-    const {activeUser} = props;
+    const {activeUser, onLogout} = props;
 
     return (
         <div className="p-recipes">
-            <RecipeNavbr activeUser={activeUser}/>
+            <RecipeNavbr activeUser={activeUser} onLogout={onLogout}/>
             Recipes Page
         </div>
     )

@@ -10,14 +10,18 @@ function App() {
   const [activeUser, setActiveUser] = useState({id: "123", fname: "Nir", lname: "Channes", email: "nir@nir.com"});
   // const [activeUser, setActiveUser] = useState(null);
 
+  function handleLogout() {
+    setActiveUser(null);
+  }
+
 
   return (
     <HashRouter>
       <Switch>
-        <Route exact path="/"><HomePage activeUser={activeUser}/></Route>
+        <Route exact path="/"><HomePage activeUser={activeUser} onLogout={handleLogout}/></Route>
         <Route exact path="/login"><LoginPage activeUser={activeUser}/></Route>
         <Route exact path="/signup"><SignupPage activeUser={activeUser}/></Route>
-        <Route exact path="/recipes"><RecipesPage activeUser={activeUser}/></Route>
+        <Route exact path="/recipes"><RecipesPage activeUser={activeUser} onLogout={handleLogout}/></Route>
       </Switch>
     </HashRouter>
   );
