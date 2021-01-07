@@ -1,21 +1,50 @@
-import { Button, Modal } from "react-bootstrap";
+import { Button, Modal, Form, Col, Row } from "react-bootstrap";
 
 
 function NewRecipeModal(props) {
-    const {show, handleClose} = props;
+    const { show, handleClose } = props;
 
     return (
-        <Modal show={show} onHide={handleClose}>
+        <Modal show={show} onHide={handleClose} size="xl">
             <Modal.Header closeButton>
-                <Modal.Title>Modal heading</Modal.Title>
+                <Modal.Title>New Recipe</Modal.Title>
             </Modal.Header>
-            <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+            <Modal.Body>
+                <Form>
+                    <Form.Group as={Row} controlId="formHorizontalName">
+                        <Form.Label column sm={2}>
+                            Recipe Name
+                        </Form.Label>
+                        <Col sm={10}>
+                            <Form.Control type="text" placeholder="Recipe Name" />
+                        </Col>
+                    </Form.Group>
+
+                    <Form.Group as={Row} controlId="formHorizontalDesc">
+                        <Form.Label column sm={2}>
+                            Recipe Description
+                        </Form.Label>
+                        <Col sm={10}>
+                            <Form.Control type="text" placeholder="Recipe Description" />
+                        </Col>
+                    </Form.Group>
+
+                    <Form.Group as={Row} controlId="formHorizontalImage">
+                        <Form.Label column sm={2}>
+                            Recipe Image URL
+                        </Form.Label>
+                        <Col sm={10}>
+                            <Form.Control type="text" placeholder="Recipe Image URL" />
+                        </Col>
+                    </Form.Group>
+                </Form>
+            </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>
-                    Close
+                    Cancel
                 </Button>
                 <Button variant="primary" onClick={handleClose}>
-                    Save Changes
+                    Create Recipe
                 </Button>
             </Modal.Footer>
         </Modal>
