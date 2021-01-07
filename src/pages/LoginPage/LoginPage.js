@@ -1,19 +1,33 @@
 import { useState } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Alert } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import './LoginPage.css'
 
 function LoginPage(props) {
     const [email, setEmail] = useState("");
     const [pwd, setPwd] = useState("");
-    const {users} = props;
+    const [showLoginError, setShowLoginError] = useState(false);
+    const {users, onLogin} = props;
     
-    console.log(users);
+    function login() {
+        
+        // Check if the login is value (if a user with the same
+        // email and pws exists in the users array)
+        const userFound = users.find(user => user.email.toLowerCase() === email.toLowerCase() && user.pwd == pwd);
+        if (userFound) {
+            // Trigger onLogin event prop
+            onLogin(userFound);
+        } else {
+            // show an error alert
+            setShowLoginError(true);
+        }
+    }
 
     return (
         <div className="p-login">
             <h1>Login to Recipe Book</h1>
             <p>or <Link to="/signup">create an account</Link></p>
+            {showLoginError ? <Alert variant="danger">Invalid Credentials!</Alert> : null}
             <Form>
                 <Form.Group controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
@@ -28,7 +42,7 @@ function LoginPage(props) {
                     <Form.Control type="password" placeholder="Password" value={pwd} onChange={e => setPwd(e.target.value)} />
                 </Form.Group>
                
-                <Button variant="success" type="button" block onClick={() => alert(email + " " + pwd)}>
+                <Button variant="success" type="button" block onClick={login}>
                     Login
                 </Button>
             </Form>
