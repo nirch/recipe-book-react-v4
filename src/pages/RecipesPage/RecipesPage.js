@@ -9,7 +9,7 @@ import Parse from 'parse';
 import RecipeModel from "../../model/RecipeModel";
 
 function RecipesPage(props) {
-    const {activeUser, onLogout, addRecipe} = props;
+    const {activeUser, onLogout} = props;
     const [showModal, setShowModal] = useState(false);
     const [recipes, setRecipes] = useState([]);
 
@@ -27,6 +27,22 @@ function RecipesPage(props) {
         }
 
     }, [activeUser])
+
+    function addRecipe(name, desc, img) {
+        const ParseRecipe = Parse.Object.extend('Recipe');
+        const newRecipe = new ParseRecipe();
+        
+        newRecipe.set('name', name);
+        newRecipe.set('desc', desc);
+        newRecipe.set('img', new Parse.File(img.name, img));
+        newRecipe.set('userId', Parse.User.current());
+        
+        newRecipe.save().then(parseRecipe => {
+            setRecipes(recipes.concat(new RecipeModel(parseRecipe)));
+        }, error => {
+            console.error('Error while creating Recipe: ', error);
+        });   
+    }
 
     if (!activeUser) {
         return <Redirect to="/"/>

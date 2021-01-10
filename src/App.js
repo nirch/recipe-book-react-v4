@@ -22,27 +22,13 @@ function App() {
     setActiveUser(loggedinUser);
   }
 
-  function addRecipe(name, desc, img) {
-    // const newRecipe = {
-    //   id: recipes[recipes.length - 1].id + 1,
-    //   name,
-    //   desc,
-    //   img,
-    //   userId: activeUser.id
-    // }
-
-    // setRecipes(recipes.concat(newRecipe));
-  }
-
-
   return (
     <HashRouter>
       <Switch>
         <Route exact path="/"><HomePage activeUser={activeUser} onLogout={handleLogout}/></Route>
         <Route exact path="/login"><LoginPage activeUser={activeUser} onLogin={handleLogin}/></Route>
         <Route exact path="/signup"><SignupPage activeUser={activeUser}/></Route>
-        <Route exact path="/recipes"><RecipesPage activeUser={activeUser} onLogout={handleLogout} 
-          addRecipe={addRecipe}/></Route>
+        <Route exact path="/recipes"><RecipesPage activeUser={activeUser} onLogout={handleLogout}/></Route>
       </Switch>
     </HashRouter>
   );

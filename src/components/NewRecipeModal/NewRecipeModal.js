@@ -24,15 +24,15 @@ function NewRecipeModal(props) {
         }
     }
 
-    const imgURL = img ? URL.createObjectURL(img) : "";
-
     function handleAddRecipe() {
         // 1) triggers addRecipe at App that will then add this recipe to its recipes state
-        addRecipe(name, desc, imgURL);
+        addRecipe(name, desc, img);
 
         // 2) cleanup (clean all field + close the modal)
         closeModal();
     }
+
+    const imgURL = img ? URL.createObjectURL(img) : "";
 
     return (
         <Modal show={show} onHide={closeModal} size="xl" className="c-new-recipe-modal">
