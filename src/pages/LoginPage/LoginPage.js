@@ -1,28 +1,30 @@
 import { useState } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
-import './LoginPage.css'
+import './LoginPage.css';
+import Parse from 'parse';
+import UserModel from "../../model/UserModel";
 
 function LoginPage(props) {
-    const [email, setEmail] = useState("john@john.com");
+    const [email, setEmail] = useState("nir@nir.com");
     const [pwd, setPwd] = useState("123");
     const [showLoginError, setShowLoginError] = useState(false);
     const [redirectToRecipes, setRedirectToRecipes] = useState(false);
-    const {users, onLogin} = props;
+    const {onLogin} = props;
     
     function login() {
-        
-        // Check if the login is value (if a user with the same
-        // email and pws exists in the users array)
-        const userFound = users.find(user => user.email.toLowerCase() === email.toLowerCase() && user.pwd == pwd);
-        if (userFound) {
+
+        // Pass the username and password to logIn function
+        Parse.User.logIn(email, pwd).then(parseUser => {
             // Trigger onLogin event prop + update redirect state so we will redirect to recipes page
-            onLogin(userFound);
+            onLogin(new UserModel(parseUser));
             setRedirectToRecipes(true);
-        } else {
+        }).catch(error => {
             // show an error alert
+            console.error('Error while logging in user', error);
             setShowLoginError(true);
-        }
+        });
+
     }
 
 
