@@ -7,14 +7,24 @@ function NewRecipeModal(props) {
     const { show, handleClose, addRecipe } = props;
     const [name, setName] = useState("");
     const [desc, setDesc] = useState("");
-    const [imgURL, setImgURL] = useState("");
+    const [img, setImg] = useState(null);
 
     function closeModal() {
         setName("");
         setDesc("");
-        setImgURL("");
+        setImg(null);
         handleClose();
     }
+
+    function handleFileChange(e) {
+        if (e.target.files.length === 1) {
+            setImg(e.target.files[0]);
+        } else {
+            setImg(null);
+        }
+    }
+
+    const imgURL = img ? URL.createObjectURL(img) : "";
 
     function handleAddRecipe() {
         // 1) triggers addRecipe at App that will then add this recipe to its recipes state
@@ -51,10 +61,10 @@ function NewRecipeModal(props) {
 
                     <Form.Group as={Row} controlId="formHorizontalImage">
                         <Form.Label column sm={2}>
-                            Recipe Image URL
+                            Recipe Image
                         </Form.Label>
                         <Col sm={10}>
-                            <Form.Control type="text" placeholder="Recipe Image URL" value={imgURL} onChange={e => setImgURL(e.target.value)}  />
+                            <Form.Control type="file" accept="image/*" onChange={handleFileChange} />
                         </Col>
                     </Form.Group>
                 </Form>
