@@ -5,14 +5,13 @@ import HomePage from './pages/HomePage/HomePage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import RecipesPage from './pages/RecipesPage/RecipesPage';
 import SignupPage from './pages/SignupPage/SignupPage';
-import jsonRecipes from './data/recipes.json';
 import Parse from 'parse';
+import UserModel from './model/UserModel';
 
 
 function App() {
-  const [activeUser, setActiveUser] = useState(null);   // During development it's conveient to be logged in by default
-  const [recipes, setRecipes] = useState(jsonRecipes);  // HACK ALERT: holding all recipes as state only because this is a JSON based application (no server side)
-  
+  const [activeUser, setActiveUser] = useState(
+    Parse.User.current() ? new UserModel(Parse.User.current()) : null);   // During development it's conveient to be logged in by default  
 
   function handleLogout() {
     setActiveUser(null);
@@ -24,18 +23,17 @@ function App() {
   }
 
   function addRecipe(name, desc, img) {
-    const newRecipe = {
-      id: recipes[recipes.length - 1].id + 1,
-      name,
-      desc,
-      img,
-      userId: activeUser.id
-    }
+    // const newRecipe = {
+    //   id: recipes[recipes.length - 1].id + 1,
+    //   name,
+    //   desc,
+    //   img,
+    //   userId: activeUser.id
+    // }
 
-    setRecipes(recipes.concat(newRecipe));
+    // setRecipes(recipes.concat(newRecipe));
   }
 
-  const activeUserReciepes = activeUser ? recipes.filter(recipe => recipe.userId === activeUser.id) : [];
 
   return (
     <HashRouter>
@@ -44,7 +42,7 @@ function App() {
         <Route exact path="/login"><LoginPage activeUser={activeUser} onLogin={handleLogin}/></Route>
         <Route exact path="/signup"><SignupPage activeUser={activeUser}/></Route>
         <Route exact path="/recipes"><RecipesPage activeUser={activeUser} onLogout={handleLogout} 
-          recipes={activeUserReciepes} addRecipe={addRecipe}/></Route>
+          addRecipe={addRecipe}/></Route>
       </Switch>
     </HashRouter>
   );
