@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/recipe-book-react-v4/static/css/main.73fe6cbb.chunk.css",
+    "main.js": "/recipe-book-react-v4/static/js/main.f0e1343f.chunk.js",
+    "main.js.map": "/recipe-book-react-v4/static/js/main.f0e1343f.chunk.js.map",
+    "runtime-main.js": "/recipe-book-react-v4/static/js/runtime-main.ac232319.js",
+    "runtime-main.js.map": "/recipe-book-react-v4/static/js/runtime-main.ac232319.js.map",
+    "static/css/2.ae9f1eb3.chunk.css": "/recipe-book-react-v4/static/css/2.ae9f1eb3.chunk.css",
+    "static/js/2.9d360ac4.chunk.js": "/recipe-book-react-v4/static/js/2.9d360ac4.chunk.js",
+    "static/js/2.9d360ac4.chunk.js.map": "/recipe-book-react-v4/static/js/2.9d360ac4.chunk.js.map",
+    "static/js/3.7ad4503a.chunk.js": "/recipe-book-react-v4/static/js/3.7ad4503a.chunk.js",
+    "static/js/3.7ad4503a.chunk.js.map": "/recipe-book-react-v4/static/js/3.7ad4503a.chunk.js.map",
+    "index.html": "/recipe-book-react-v4/index.html",
+    "static/css/2.ae9f1eb3.chunk.css.map": "/recipe-book-react-v4/static/css/2.ae9f1eb3.chunk.css.map",
+    "static/css/main.73fe6cbb.chunk.css.map": "/recipe-book-react-v4/static/css/main.73fe6cbb.chunk.css.map",
+    "static/js/2.9d360ac4.chunk.js.LICENSE.txt": "/recipe-book-react-v4/static/js/2.9d360ac4.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ac232319.js",
+    "static/css/2.ae9f1eb3.chunk.css",
+    "static/js/2.9d360ac4.chunk.js",
+    "static/css/main.73fe6cbb.chunk.css",
+    "static/js/main.f0e1343f.chunk.js"
+  ]
+}
