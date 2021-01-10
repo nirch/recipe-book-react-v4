@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button, Modal, Form, Col, Row, Image } from "react-bootstrap";
+import './NewRecipeModal.css'
 
 
 function NewRecipeModal(props) {
@@ -24,7 +25,7 @@ function NewRecipeModal(props) {
     }
 
     return (
-        <Modal show={show} onHide={closeModal} size="xl">
+        <Modal show={show} onHide={closeModal} size="xl" className="c-new-recipe-modal">
             <Modal.Header closeButton>
                 <Modal.Title>New Recipe</Modal.Title>
             </Modal.Header>
@@ -57,7 +58,7 @@ function NewRecipeModal(props) {
                         </Col>
                     </Form.Group>
                 </Form>
-                <Image src={imgURL}/>
+                <Image src={imgURL} className="img-preview"/>
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={closeModal}>
