@@ -12,19 +12,18 @@ function LoginPage(props) {
     const [redirectToRecipes, setRedirectToRecipes] = useState(false);
     const {onLogin} = props;
     
-    function login() {
+    async function login() {
 
-        // Pass the username and password to logIn function
-        Parse.User.logIn(email, pwd).then(parseUser => {
+        try {
+            const parseUser = await Parse.User.logIn(email, pwd);
             // Trigger onLogin event prop + update redirect state so we will redirect to recipes page
             onLogin(new UserModel(parseUser));
-            setRedirectToRecipes(true);
-        }).catch(error => {
+            setRedirectToRecipes(true);    
+        } catch(error) {
             // show an error alert
             console.error('Error while logging in user', error);
             setShowLoginError(true);
-        });
-
+        }
     }
 
 
