@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { Redirect } from "react-router-dom";
 import NewRecipeModal from "../../components/NewRecipeModal/NewRecipeModal";
 import RecipeCard from "../../components/RecipeCard/RecipeCard";
 import RecipeNavbr from "../../components/RecipeNavbar/RecipeNavbr";
+import ActiveUserContext from "../../shared/ActiveUserContext";
 import './RecipesPage.css'
 
 function RecipesPage(props) {
-    const {activeUser, onLogout, recipes, addRecipe} = props;
+    const activeUser = useContext(ActiveUserContext);
+    const { onLogout, recipes, addRecipe } = props;
     const [showModal, setShowModal] = useState(false);
 
     if (!activeUser) {

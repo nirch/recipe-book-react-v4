@@ -7,6 +7,7 @@ import RecipesPage from './pages/RecipesPage/RecipesPage';
 import SignupPage from './pages/SignupPage/SignupPage';
 import jsonUsers from './data/users.json';
 import jsonRecipes from './data/recipes.json';
+import ActiveUserContext from './shared/ActiveUserContext'
 
 
 function App() {
@@ -38,15 +39,17 @@ function App() {
   const activeUserReciepes = activeUser ? recipes.filter(recipe => recipe.userId === activeUser.id) : [];
 
   return (
-    <HashRouter>
-      <Switch>
-        <Route exact path="/"><HomePage activeUser={activeUser} onLogout={handleLogout}/></Route>
-        <Route exact path="/login"><LoginPage activeUser={activeUser} users={users} onLogin={handleLogin}/></Route>
-        <Route exact path="/signup"><SignupPage activeUser={activeUser}/></Route>
-        <Route exact path="/recipes"><RecipesPage activeUser={activeUser} onLogout={handleLogout} 
-          recipes={activeUserReciepes} addRecipe={addRecipe}/></Route>
-      </Switch>
-    </HashRouter>
+    <ActiveUserContext.Provider value={activeUser}>
+      <HashRouter>
+        <Switch>
+          <Route exact path="/"><HomePage onLogout={handleLogout}/></Route>
+          <Route exact path="/login"><LoginPage users={users} onLogin={handleLogin}/></Route>
+          <Route exact path="/signup"><SignupPage/></Route>
+          <Route exact path="/recipes"><RecipesPage onLogout={handleLogout} 
+            recipes={activeUserReciepes} addRecipe={addRecipe}/></Route>
+        </Switch>
+      </HashRouter>
+    </ActiveUserContext.Provider>
   );
 }
 

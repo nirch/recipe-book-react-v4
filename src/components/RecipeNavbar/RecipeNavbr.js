@@ -1,8 +1,12 @@
+import { useContext } from "react";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
+import ActiveUserContext from "../../shared/ActiveUserContext";
+
 
 
 function RecipeNavbr(props) {
-    const {activeUser, onLogout} = props;
+    const activeUser = useContext(ActiveUserContext);
+    const { onLogout } = props;
 
     return (
         <Navbar bg="light" expand="lg">
