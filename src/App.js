@@ -7,7 +7,8 @@ import RecipesPage from './pages/RecipesPage/RecipesPage';
 import SignupPage from './pages/SignupPage/SignupPage';
 import jsonUsers from './data/users.json';
 import jsonRecipes from './data/recipes.json';
-import ActiveUserContext from './shared/ActiveUserContext'
+import ActiveUserContext from './shared/ActiveUserContext';
+import emailjs from 'emailjs-com';
 
 
 function App() {
@@ -34,6 +35,14 @@ function App() {
     }
 
     setRecipes(recipes.concat(newRecipe));
+
+    // sending an email about the new recipe
+    emailjs.send("gmail","template_rcwhngk",{
+      recipe_name: name,
+      user_name: activeUser.fname + " " + activeUser.lname,
+      recipe_desc: desc,
+      user_email: activeUser.email,
+      });
   }
 
   const activeUserReciepes = activeUser ? recipes.filter(recipe => recipe.userId === activeUser.id) : [];
