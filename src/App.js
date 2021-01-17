@@ -31,6 +31,7 @@ function App() {
       name,
       desc,
       img,
+      difficulty: 1,
       userId: activeUser.id
     }
 
