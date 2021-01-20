@@ -1,6 +1,7 @@
 
 .c-recipe-card {
     height: 100%;
+    transform: translate(0, -100vh);
 }
 
 .c-recipe-card > .card {
@@ -10,4 +11,18 @@
 .c-recipe-card > .card img {
     height: 250px;
     object-fit: cover;
+}
+
+@keyframes falldown {
+    from {
+        transform: translate(0, -100vh);
+    }
+
+    to {
+        transform: translate(0, 0);
+    }
+}
+
+.animate-falldown {
+    animation: falldown 3s forwards;
 }

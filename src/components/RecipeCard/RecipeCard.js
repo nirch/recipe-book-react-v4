@@ -3,9 +3,11 @@ import './RecipeCard.css'
 
 
 function RecipeCard(props) {
-    const { recipe } = props;
+    const { recipe, position } = props;
+
+    const myStyle = {animationDelay: position + 's'};
     return (
-        <div className="c-recipe-card">
+        <div className="c-recipe-card animate-falldown" style={myStyle}>
             <Card>
                 <Card.Img variant="top" src={recipe.img} />
                 <Card.Body>

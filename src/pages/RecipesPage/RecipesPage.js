@@ -53,7 +53,7 @@ function RecipesPage(props) {
     }
       
 
-    const recipesView = recipes.map(recipe => <Col key={recipe.id} lg={3} md={6}><RecipeCard recipe={recipe}/></Col>)
+    const recipesView = recipes.map((recipe, index) => <Col key={recipe.id} lg={3} md={6}><RecipeCard recipe={recipe} position={index}/></Col>)
 
     return (
         <div className="p-recipes">
